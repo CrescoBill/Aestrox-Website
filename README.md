@@ -1,29 +1,49 @@
-# Welcome to your Lovable project
+# Aestrox
 
-This project was built with [Lovable](https://lovable.dev).
+Billing software for clearer business workflows.
 
-## Build with Lovable
+## Getting Started
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+### Prerequisites
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- [Node.js](https://nodejs.org/) (v18+)
+- [npm](https://www.npmjs.com/) or [Bun](https://bun.sh/)
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### Installation
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+git clone https://github.com/ahraz77/aestrox.git
+cd aestrox
+npm install
+```
+
+### Development
+
+```sh
 npm run dev
 ```
 
-## Built with
+### Build
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+```sh
+npm run build
+```
+
+### Preview
+
+```sh
+npm run preview
+```
+
+## Tech Stack
+
+- [React](https://react.dev/)
+- [TanStack Start](https://tanstack.com/start)
+- [TanStack Router](https://tanstack.com/router)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Vite](https://vite.dev/)
+
+## License
+
+This project is proprietary. All rights reserved.
