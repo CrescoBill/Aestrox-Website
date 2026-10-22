@@ -175,7 +175,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             Anything you’d like us to know? <span className="optional">Optional</span>
           </span>
           <textarea
-            className="resize-none"
             {...fieldProps("message")}
             rows={3}
             maxLength={2000}

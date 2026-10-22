@@ -135,12 +135,17 @@ try {
         contentType: "application/json",
         body: JSON.stringify({ error: "Unavailable" }),
       });
+    // The function streams newline-delimited events, as in production.
     return route.fulfill({
       status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({
-        reply: "Aestrox offers monthly and annual billing. Contact hello@aestrox.com for pricing.",
-      }),
+      contentType: "application/x-ndjson; charset=utf-8",
+      body: [
+        { type: "delta", text: "Aestrox offers monthly and annual billing. " },
+        { type: "delta", text: "Contact hello@aestrox.com for pricing." },
+        { type: "done" },
+      ]
+        .map((event) => JSON.stringify(event) + "\n")
+        .join(""),
     });
   });
   await page.getByRole("button", { name: "Ask Aestrox AI assistant" }).click();

@@ -51,6 +51,89 @@ export const posFeatures = [
   "Web and Android",
 ];
 
+/** The features page and the AI assistant both read these. Keep them true to the product. */
+export const posFeatureAreas = [
+  {
+    label: "Ordering",
+    title: "Build an order at the pace of service.",
+    copy: "Tap items to add them, change quantities and keep the bill moving. Save an order to finish later or go straight to checkout.",
+    points: [
+      "Takeaway, dine-in and table orders",
+      "Token or guest name on each order",
+      "Search by name or initials",
+      "Keyboard shortcuts at the counter",
+    ],
+  },
+  {
+    label: "Sizes & add-ons",
+    title: "Make every order theirs.",
+    copy: "Sizes, spice levels and extras are one tap each, with prices and tax worked out for you.",
+    points: [
+      "Sizes with their own prices",
+      "Required and optional choices",
+      "Add-ons and kitchen notes",
+    ],
+  },
+  {
+    label: "Kitchen",
+    title: "Orders reach the kitchen as tickets.",
+    copy: "Your kitchen screen shows new, preparing and ready tickets. Print a ticket whenever the kitchen needs paper.",
+    points: [
+      "Tickets when an order is sent",
+      "New, preparing, ready to serve",
+      "Cancellations marked in red",
+    ],
+  },
+  {
+    label: "Tables",
+    title: "Run the floor from the counter.",
+    copy: "Group tables by area, see who is seated and for how long, and open the bill for any table.",
+    points: [
+      "Indoor and outdoor areas",
+      "Free and occupied at a glance",
+      "Bill so far on each table",
+    ],
+  },
+  {
+    label: "Payments & receipts",
+    title: "Keep the details within reach.",
+    copy: "Record payments taken through your existing card machine or UPI. Aestrox is not a payment gateway; your team confirms each payment before recording it.",
+    points: [
+      "Cash, card and UPI",
+      "Numbered receipts with CGST and SGST",
+      "Find, reprint or reverse a sale",
+      "58 mm, 80 mm and A4 layouts",
+    ],
+  },
+  {
+    label: "Reports",
+    title: "Keep an eye on the day.",
+    copy: "Your dashboard brings together sales, orders and your average bill, compared with yesterday.",
+    points: ["Sales by hour", "Busiest hour of the day", "Payment and order type mix"],
+  },
+  {
+    label: "Menu",
+    title: "Keep what you serve up to date.",
+    copy: "Manage categories, prices and GST rates. Switch an item off when it runs out and back on when it returns.",
+    points: [
+      "Categories, sizes and add-ons",
+      "GST rate per item",
+      "Drag to reorder",
+      "Photos or icons",
+    ],
+  },
+  {
+    label: "Team",
+    title: "The right access for the right people.",
+    copy: "Invite your team, choose their role and connect them to the locations they work in.",
+    points: [
+      "Owner, cashier, waiter and kitchen roles",
+      "Access by location",
+      "Pause access without losing history",
+    ],
+  },
+] as const;
+
 export const faqs = [
   {
     question: "What is Aestrox?",

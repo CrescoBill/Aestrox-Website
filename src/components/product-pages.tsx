@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, Mail, Monitor, Phone, Printer, Smartphone } from "lucide-react";
 import { useDemo } from "./site-shell";
 import { ContactForm } from "./contact-form";
 import { PhoneShot, Shot } from "./product-shot";
 import { CheckList, FeatureRow, OrderingStage, ShotStage } from "./showcase";
-import { site, faqs, posFeatures, products, type BillingPeriod } from "@/data/site";
+import {
+  site,
+  faqs,
+  posFeatureAreas,
+  posFeatures,
+  products,
+  type BillingPeriod,
+} from "@/data/site";
 import { companyStructuredData } from "@/data/seo";
 
 export function pageHead(title: string, description: string, path = "/") {
@@ -306,95 +313,17 @@ export function BillingPage() {
   );
 }
 
-const featureAreas = [
-  {
-    label: "Ordering",
-    title: "Build an order at the pace of service.",
-    copy: "Tap items to add them, change quantities and keep the bill moving. Save an order to finish later or go straight to checkout.",
-    points: [
-      "Takeaway, dine-in and table orders",
-      "Token or guest name on each order",
-      "Search by name or initials",
-      "Keyboard shortcuts at the counter",
-    ],
-    visual: <ShotStage name="menu" secondary="cart" />,
-  },
-  {
-    label: "Sizes & add-ons",
-    title: "Make every order theirs.",
-    copy: "Sizes, spice levels and extras are one tap each, with prices and tax worked out for you.",
-    points: [
-      "Sizes with their own prices",
-      "Required and optional choices",
-      "Add-ons and kitchen notes",
-    ],
-    visual: <ShotStage name="customiser" />,
-  },
-  {
-    label: "Kitchen",
-    title: "Orders reach the kitchen as tickets.",
-    copy: "Your kitchen screen shows new, preparing and ready tickets. Print a ticket whenever the kitchen needs paper.",
-    points: [
-      "Tickets when an order is sent",
-      "New, preparing, ready to serve",
-      "Cancellations marked in red",
-    ],
-    visual: <ShotStage name="kitchen" tone="paper" />,
-  },
-  {
-    label: "Tables",
-    title: "Run the floor from the counter.",
-    copy: "Group tables by area, see who is seated and for how long, and open the bill for any table.",
-    points: [
-      "Indoor and outdoor areas",
-      "Free and occupied at a glance",
-      "Bill so far on each table",
-    ],
-    visual: <ShotStage name="tables" tone="paper" />,
-  },
-  {
-    label: "Payments & receipts",
-    title: "Keep the details within reach.",
-    copy: "Record payments taken through your existing card machine or UPI. Aestrox is not a payment gateway; your team confirms each payment before recording it.",
-    points: [
-      "Cash, card and UPI",
-      "Numbered receipts with CGST and SGST",
-      "Find, reprint or reverse a sale",
-      "58 mm, 80 mm and A4 layouts",
-    ],
-    visual: <ShotStage name="transactions" secondary="receipt" tone="paper" />,
-  },
-  {
-    label: "Reports",
-    title: "Keep an eye on the day.",
-    copy: "Your dashboard brings together sales, orders and your average bill, compared with yesterday.",
-    points: ["Sales by hour", "Busiest hour of the day", "Payment and order type mix"],
-    visual: <ShotStage name="dashboard" />,
-  },
-  {
-    label: "Menu",
-    title: "Keep what you serve up to date.",
-    copy: "Manage categories, prices and GST rates. Switch an item off when it runs out and back on when it returns.",
-    points: [
-      "Categories, sizes and add-ons",
-      "GST rate per item",
-      "Drag to reorder",
-      "Photos or icons",
-    ],
-    visual: <ShotStage name="menu-manage" tone="paper" />,
-  },
-  {
-    label: "Team",
-    title: "The right access for the right people.",
-    copy: "Invite your team, choose their role and connect them to the locations they work in.",
-    points: [
-      "Owner, cashier, waiter and kitchen roles",
-      "Access by location",
-      "Pause access without losing history",
-    ],
-    visual: <ShotStage name="team" tone="paper" />,
-  },
-] as const;
+/** Real captures shown beside each feature area (text lives in src/data/site.ts). */
+const featureVisuals: Record<(typeof posFeatureAreas)[number]["label"], ReactNode> = {
+  Ordering: <ShotStage name="menu" secondary="cart" />,
+  "Sizes & add-ons": <ShotStage name="customiser" />,
+  Kitchen: <ShotStage name="kitchen" tone="paper" />,
+  Tables: <ShotStage name="tables" tone="paper" />,
+  "Payments & receipts": <ShotStage name="transactions" secondary="receipt" tone="paper" />,
+  Reports: <ShotStage name="dashboard" />,
+  Menu: <ShotStage name="menu-manage" tone="paper" />,
+  Team: <ShotStage name="team" tone="paper" />,
+};
 
 export function FeaturesPage() {
   return (
@@ -406,13 +335,13 @@ export function FeaturesPage() {
       />
       <section className="section features-list" aria-label="Aestrox POS features">
         <div className="container feature-rows">
-          {featureAreas.map((area, index) => (
+          {posFeatureAreas.map((area, index) => (
             <FeatureRow
               key={area.label}
               reverse={index % 2 === 1}
               label={area.label}
               title={area.title}
-              visual={area.visual}
+              visual={featureVisuals[area.label]}
             >
               <p>{area.copy}</p>
               <CheckList items={area.points} />
