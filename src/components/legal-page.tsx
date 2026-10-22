@@ -29,7 +29,7 @@ export function LegalPage({ kind }: { kind: keyof typeof legal }) {
                 ))}
               </section>
             ))}
-            <p className="legal-updated">Last updated: 22 October 2026</p>
+            <p className="legal-updated">Last updated: 23 October 2026</p>
           </div>
         </div>
       </section>

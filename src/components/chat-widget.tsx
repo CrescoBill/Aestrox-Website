@@ -331,8 +331,8 @@ export default function ChatWidget({
               )}
             </form>
             <p className="chat-privacy">
-              AI answers can be mistaken. Don’t share sensitive details. Messages are processed by
-              Groq. <Link to="/privacy">Privacy</Link>
+              AI answers can be mistaken. Don’t share sensitive details.{" "}
+              <Link to="/privacy">Privacy</Link>
             </p>
           </div>
         </Dialog.Content>

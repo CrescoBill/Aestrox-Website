@@ -5,149 +5,222 @@ export const legal: Record<"privacy" | "terms" | "cookies", LegalDocument> = {
   privacy: {
     title: "Privacy policy",
     intro:
-      "How Aestrox handles information when you visit this website, contact our team or use the website assistant.",
+      "How Aestrox collects, uses and protects information when you use Aestrox POS and our other products, our apps and this website, or contact our team.",
     sections: [
       {
         title: "Who we are",
         paragraphs: [
-          `Aestrox provides business software and operates this website. Our team is based in Mangalore, India; Dubai, UAE; and Dublin, Ireland. For privacy questions, contact ${site.email}.`,
-          "This policy covers our company website and sales enquiries. If your business uses Aestrox POS, the applicable service agreement and product privacy information also apply. Your business remains responsible for the customer and staff information it enters into the product.",
+          `Aestrox provides business software, including Aestrox POS for cafés and restaurants on the web and Android. Our team is based in Mangalore, India; Dubai, UAE; and Dublin, Ireland. For privacy questions, contact ${site.email}.`,
+          "This policy applies to our products, our apps, this website, and the enquiries and support requests you send us. If your business has a separate service agreement with us, that agreement also applies.",
         ],
       },
       {
-        title: "Information you share",
+        title: "Your business and its data",
         paragraphs: [
-          "When you send an enquiry, we receive your name, email address, business name, and any optional phone number or message. We also receive the type of enquiry, selected billing period where relevant, and your permission to respond.",
-          "If you use the AI assistant, your message and a limited amount of recent conversation context are sent to our server and then to Groq to generate a reply. Please do not include passwords, payment-card information, API keys, or confidential customer or staff records.",
-          "Our hosting provider may process technical information such as IP addresses, requested pages, device/browser information and timestamps to serve the website, prevent abuse and diagnose errors.",
+          "When a business uses Aestrox, the business decides what information goes into its workspace, such as staff accounts, menus, orders and notes. We handle that information on the business's behalf and follow its instructions and our agreement with it. The business is responsible for having the right to use that information and for telling its staff and customers how it is used.",
+          "For account, subscription, support and enquiry information, Aestrox decides how the information is used, as described in this policy.",
         ],
       },
       {
-        title: "Why we use this information",
+        title: "Information we collect",
         paragraphs: [
-          "We use enquiry information to respond to you, discuss a requested demo or quotation, and help with your setup. We use assistant messages to answer the question you ask. We use technical information to operate and protect the website.",
-          "Where data protection law requires a legal basis, processing may be necessary to take steps at your request before entering a contract, pursue our legitimate interests in responding to business enquiries and keeping the website secure, comply with a legal obligation, or act on your consent where consent is required. An enquiry is not an automatic subscription to marketing emails.",
+          "Account information: the name, email address and role of each person with access, and the business and locations they can use. Passwords are never visible to our team.",
+          "Business information: business and location names, address and contact details, tax registration and tax rates, menu items, prices, add-ons and menu photos.",
+          "Sales records: orders and their items, notes and table or reference labels added by staff, kitchen tickets, receipts including the name of the staff member who issued them, the payment method and any payment reference staff record, cancellations and refunds, and the reports built from these records.",
+          "Activity records: which account made important changes, such as editing the menu, issuing a receipt or reversing a sale, and when.",
+          "Printer and device information: printer settings and print history needed to send receipts and kitchen tickets. The Android app asks for Bluetooth, nearby device, network and notification permissions only to connect to your printers and show printing status.",
+          "Subscription and contact details: your plan, billing period, billing contact, and messages you send to our team, including website enquiries and questions to the website assistant.",
+          "Technical information: IP address, device and browser type, request times and error details, used to run the services, keep them secure and fix problems.",
         ],
       },
       {
-        title: "Service providers and sharing",
+        title: "Payments",
         paragraphs: [
-          "The website is hosted on Netlify. Netlify Forms processes enquiry submissions and makes them available to our team. Notifications may be sent to the email destinations we configure. The website assistant uses a Netlify Function and Groq to generate responses.",
-          "We share information with providers only where needed to operate these services, respond to you or meet applicable obligations. We do not sell enquiry information. We may disclose information when required by law or when necessary to protect legal rights and prevent abuse.",
-          "Provider processing may occur outside your country, including outside the European Economic Area. Where required by applicable law, international transfers must be covered by appropriate safeguards. Contact us for information about the safeguards relevant to your enquiry.",
+          "Aestrox POS does not process card or UPI payments and does not collect card numbers. Payments are taken with your own terminal or payment provider, and staff record the result in Aestrox.",
         ],
       },
       {
-        title: "How long information is kept",
+        title: "How we use information",
         paragraphs: [
-          "Enquiry records are retained for as long as needed to respond, manage the resulting business relationship, resolve disputes and meet applicable record-keeping obligations. We assess retention based on the purpose of the record rather than keeping every enquiry indefinitely.",
-          "This website keeps the assistant conversation in page memory, not in a persistent browser history or an Aestrox chat database. Reloading the page clears that local conversation. Netlify and Groq may separately process requests and technical data under their own service terms and retention settings. Closing the chat does not delete records already processed by those providers.",
+          "We use information to provide our products: setting up accounts, sending invitations and service emails, calculating totals and taxes, issuing receipts, printing, building reports and keeping each business's records available to the people it authorises.",
+          "We also use it to provide support, manage subscriptions, respond to enquiries, keep our services secure, prevent misuse, fix problems and improve our products. We do not sell personal information, and we do not use the information a business enters about its customers for advertising.",
+          "Where data protection law requires a legal basis, we rely on performing our contract with your business or taking steps you asked for before one, our legitimate interests in running and securing our services and responding to enquiries, compliance with legal obligations, or your consent where consent is required. An enquiry is not a subscription to marketing emails.",
+        ],
+      },
+      {
+        title: "Who can see your information",
+        paragraphs: [
+          "Within a business, access depends on the role and locations the owner gives each person. One business cannot see another business's data.",
+          "Our team accesses a business's data only when needed to provide support it asks for, keep the services secure, or meet a legal obligation.",
+          "We use trusted service providers for hosting, data storage, sign-in, email delivery and the website assistant. They process information only to provide those services to us. We may also disclose information when the law requires it or to protect people, rights and property.",
+          "Some providers may process information outside your country, including outside the European Economic Area. Where the law requires it, we use appropriate safeguards for these transfers. Contact us for details.",
+        ],
+      },
+      {
+        title: "How long we keep information",
+        paragraphs: [
+          "We keep a business's information while its account is active. Issued receipts cannot be edited; corrections are recorded as a separate reversal so the history stays complete. Financial records are kept for as long as the account is active and as tax and accounting rules require.",
+          "When an account closes, the business can ask us for a copy of its records first. We then delete or anonymise the information within a reasonable period, unless the law requires us to keep it.",
+          "Enquiries are kept as long as needed to respond, manage the resulting relationship and meet record-keeping obligations. Website assistant conversations are not saved to an account and clear when you reload the page. The service that generates replies may keep messages for a limited time for security under its own terms.",
+        ],
+      },
+      {
+        title: "Security",
+        paragraphs: [
+          "We protect information with secure sign-in, role-based access, separation between businesses, encrypted connections and records of important actions. No online service can guarantee absolute security.",
+          "Please give each staff member their own account, keep sign-in details private, and do not share passwords or payment card details with the website assistant or in enquiries.",
         ],
       },
       {
         title: "Your choices and rights",
         paragraphs: [
-          `Depending on applicable law, you may request access, correction, erasure, restriction, portability or object to certain processing. Where processing relies on consent, you can withdraw it without affecting earlier lawful processing. Write to ${site.email}; we may need to verify your identity.`,
-          "You can choose not to use the assistant or submit a form, and contact us by email or phone instead. You may also raise a complaint with the relevant data protection authority, including the Irish Data Protection Commission where applicable.",
+          `Depending on applicable law, you may ask to access, correct, erase, restrict or receive a copy of your information, or object to certain uses. Where we rely on consent, you can withdraw it at any time. Write to ${site.email}; we may need to verify your identity.`,
+          "If you are a staff member or customer of a business that uses Aestrox, please contact that business first. We will help it respond. You may also complain to your data protection authority, including the Irish Data Protection Commission where applicable.",
         ],
       },
       {
-        title: "Cookies and security",
+        title: "Cookies and children",
         paragraphs: [
-          "We do not add advertising trackers or analytics cookies in this version of the website. Fonts and product assets are served by this site. Social links take you to another service only when you choose to open them. See our Cookies page for more detail.",
-          "We use measures such as encrypted connections, restricted server credentials and request limits to protect the website. No internet service can guarantee absolute security.",
+          "We do not use advertising or tracking cookies. Our Cookies page explains what our products and this website store on your device.",
+          "Aestrox products are made for businesses and are not intended for children.",
         ],
       },
       {
         title: "Updates and contact",
         paragraphs: [
-          `We may update this policy when our services or practices change. The date below identifies this version. For questions or a privacy request, email ${site.email}.`,
+          `We may update this policy when our products or practices change. The date below shows the current version. For questions or a privacy request, email ${site.email}.`,
         ],
       },
     ],
   },
   terms: {
     title: "Terms of use",
-    intro: "These terms explain the use of the Aestrox website and its public demonstrations.",
+    intro: "The terms for using Aestrox POS and our other products, our apps and this website.",
     sections: [
       {
-        title: "About this website",
+        title: "Using Aestrox",
         paragraphs: [
-          "This website is operated by Aestrox and introduces our company and products. You may use it to learn about our products, explore sample interactions and contact our team. Please use it lawfully and respect other people’s rights.",
-          `You can reach us at ${site.email}. Our team locations are Mangalore, India; Dubai, UAE; and Dublin, Ireland.`,
+          `These terms apply when you use Aestrox products, our apps or this website. If your business has a signed order form or service agreement with us, that agreement applies where it differs from these terms. You can reach us at ${site.email}.`,
+          "Aestrox products are for business use. If you accept these terms for a business, you confirm that you are allowed to do so on its behalf.",
         ],
       },
       {
-        title: "Product information and enquiries",
+        title: "Accounts and access",
         paragraphs: [
-          "Website descriptions provide an overview, not a promise that every configuration, device or third-party integration is supported. Confirm your requirements with our team before purchasing software or hardware.",
-          "Submitting an enquiry, requesting a demo, or choosing a monthly or annual billing preference does not create a paid subscription or binding quotation. Scope, pricing, billing, renewal, cancellation, support and other service terms are agreed separately. These website terms do not replace your Aestrox product agreement.",
+          "The business owner sets up the workspace, invites team members and chooses each person's role and locations. Each person should use their own account and keep their sign-in details private.",
+          `Your business is responsible for activity under its accounts. Tell us at ${site.supportEmail} as soon as possible if you think an account has been used without permission.`,
         ],
       },
       {
-        title: "Demonstrations and assistant",
+        title: "Free trial and subscriptions",
         paragraphs: [
-          "Interactive product previews use fictional sample data. They do not create orders in your business, collect payments or process a real transaction.",
-          "The website assistant is an AI system, not a person or an account-management service. Its answers may be incomplete or inaccurate. It cannot access your business account, send an enquiry for you, book a confirmed appointment or make a binding commitment. Confirm important product, pricing and compatibility questions with our team.",
+          `New businesses can try Aestrox POS free for ${site.trialDays} days. Paid plans are billed monthly or annually. We confirm your price, renewal and cancellation terms in writing before a paid subscription starts.`,
+          "Sending an enquiry or choosing a billing period on this website does not create a subscription or a binding quotation. Applicable taxes may be added to fees. If fees remain unpaid after we have contacted you, we may restrict access to the paid account.",
+        ],
+      },
+      {
+        title: "Your data",
+        paragraphs: [
+          "Your business owns the information it enters, including menus, orders, receipts and reports. You allow us to store and process it only to provide, secure and support our services for you.",
+          "You are responsible for the accuracy of the information you enter and for having the right to enter information about your staff and customers.",
+        ],
+      },
+      {
+        title: "Prices, taxes and receipts",
+        paragraphs: [
+          "Aestrox POS calculates totals and taxes from the prices, tax rates and business details you set. Your business is responsible for these settings and for meeting its own tax, invoicing and record-keeping obligations.",
+          "Issued receipts cannot be edited. Cancellations and refunds are recorded as separate entries so the history stays complete. Receipts from Aestrox POS are sales receipts; where the law requires a formal tax invoice, check with your accountant whether a receipt is enough.",
+        ],
+      },
+      {
+        title: "Payments",
+        paragraphs: [
+          "Aestrox POS does not process payments. Staff record payments taken with your own terminal, cash drawer or payment provider. Recording a payment in Aestrox does not verify it, so check that the money was received before marking an order paid.",
+        ],
+      },
+      {
+        title: "Printers and devices",
+        paragraphs: [
+          "Printer support depends on the printer model, connection and device. Check your setup with our team before buying hardware. A print being sent does not guarantee that paper was printed, so check your printers during service.",
         ],
       },
       {
         title: "Acceptable use",
         paragraphs: [
-          "Do not attempt to compromise the site, bypass request limits, extract credentials, introduce malicious code or interfere with service for other visitors. Do not send unlawful content or personal information you are not entitled to share.",
-          "Please do not submit confidential customer records, payment-card information, passwords or API keys through the enquiry form or assistant.",
+          "Do not try to access another business's data, bypass security or usage limits, copy or reverse engineer our software except where the law allows, introduce harmful code, or interfere with the service for others.",
+          "Do not use Aestrox for unlawful purposes, resell it without our agreement, or enter information you are not entitled to share.",
         ],
       },
       {
-        title: "Our content",
+        title: "Availability and changes",
         paragraphs: [
-          "Aestrox branding, original website content and software demonstrations belong to Aestrox or the relevant rights holders. You may view and share links to public pages. Other use of protected content requires permission unless the law permits it.",
-          "Third-party names or marks remain the property of their respective owners. A reference to a device, platform or service does not imply endorsement or a partnership.",
+          "We work to keep our services available, but maintenance, outages, and your own internet connection or devices can interrupt them. We improve our products over time and aim to give notice of changes that significantly affect a paid service.",
         ],
       },
       {
-        title: "External services and availability",
+        title: "This website and the assistant",
         paragraphs: [
-          "Links to social networks, app stores or other services are provided for convenience. Those services have their own terms and privacy practices. We do not control their content or availability.",
-          "We may update or temporarily interrupt the website for maintenance or security. We aim to keep information useful and accurate, but website content alone should not be relied on for legal, tax or financial advice. Nothing in these terms excludes rights or responsibilities that cannot lawfully be excluded.",
+          "Website descriptions give an overview, not a promise that every configuration, device or integration is supported. Product previews use fictional sample data.",
+          "The website assistant is an AI system, not a person. Its answers may be incomplete or wrong. It cannot access your account, send an enquiry for you or make a commitment. Confirm important product, pricing and compatibility questions with our team.",
+        ],
+      },
+      {
+        title: "Our software and content",
+        paragraphs: [
+          "Aestrox software, branding and content belong to Aestrox or its licensors. While your subscription or trial is active, your business may use our products for its own operations under these terms.",
+          "Other names and marks belong to their owners. Mentioning a device, platform or service does not imply endorsement or a partnership.",
+        ],
+      },
+      {
+        title: "Ending your use",
+        paragraphs: [
+          "You can stop using Aestrox at any time, subject to the cancellation terms of your subscription. We may suspend or end access for a serious breach of these terms or to protect the service and other customers.",
+          "Before an account closes, your business can ask us for a copy of its records.",
+        ],
+      },
+      {
+        title: "Responsibility",
+        paragraphs: [
+          "We provide our services with reasonable care and skill. To the extent the law allows, we are not responsible for indirect losses or lost profits, and your service agreement may set further limits. Nothing in these terms excludes rights or responsibilities that cannot be excluded by law.",
+          "Our products and website do not give legal, tax or financial advice.",
         ],
       },
       {
         title: "Changes and questions",
         paragraphs: [
-          `We may revise these website terms as the site changes. Contact ${site.email} if you have a question about using the website or need to discuss a product agreement.`,
+          `We may update these terms as our products change. The date below shows the current version. Contact ${site.email} with any questions.`,
         ],
       },
     ],
   },
   cookies: {
     title: "Cookies & local storage",
-    intro: "A straightforward explanation of what this website stores on your device.",
+    intro: "What Aestrox products and this website store on your device, and why.",
     sections: [
       {
-        title: "No advertising cookies by default",
+        title: "No advertising or tracking",
         paragraphs: [
-          "This version of the Aestrox website does not install advertising pixels or third-party analytics trackers. We do not load embedded social feeds or external font services. A cookie-consent banner is not used to imply that tracking is taking place when it is not.",
+          "Aestrox products and this website do not use advertising cookies, tracking pixels or third-party analytics. We do not show a consent banner because there is no tracking to consent to.",
         ],
       },
       {
-        title: "Temporary page state",
+        title: "Aestrox POS and apps",
         paragraphs: [
-          "The sample order, pricing selection, form values and assistant conversation are held in page memory. The website does not intentionally save them to localStorage or a persistent chat database. Reloading the page resets this temporary state.",
-          "Our page navigation uses sessionStorage to remember scroll positions within your browser tab. This supports back and forward navigation and is not used for advertising or profiling.",
-          "The hosting platform may use security mechanisms and process technical request data needed to provide and protect the site. Our Privacy policy explains the information processed when you send an enquiry or ask the assistant a question.",
+          "Aestrox POS stores what it needs to work on your device: keeping you signed in, remembering the business and location you chose, your layout preferences, and the printer and receipt settings for each location.",
+          "These are needed for the service to work. Clearing them signs you out and resets those settings on that device.",
         ],
       },
       {
-        title: "Other Aestrox services",
+        title: "This website",
         paragraphs: [
-          "Logging in to Aestrox POS opens a separate service at pos.aestrox.com. Its authentication and device preferences may require storage that is not used by this marketing website. External social networks and app stores also operate under their own policies.",
+          "The sample order, pricing choice, form entries and assistant conversation are kept only while the page is open. Reloading the page clears them.",
+          "The website remembers your scroll position within a browser tab so the back and forward buttons return you to the same place. It is not used for advertising or profiling.",
         ],
       },
       {
         title: "Your controls",
         paragraphs: [
-          `You can manage cookies and site storage in your browser settings. If we add optional tracking in future, we will update this notice and obtain consent where required before enabling it. Questions can be sent to ${site.email}.`,
+          `You can manage cookies and site data in your browser or device settings. If we ever add optional tracking, we will update this page and ask for consent where required before turning it on. Questions can be sent to ${site.email}.`,
         ],
       },
     ],
