@@ -169,11 +169,27 @@ try {
   });
   await page.screenshot({ path: ".tmp/screenshots/chat-desktop.png" });
   await page.keyboard.press("Escape");
+  // Every real product capture loads, reserves its space and is described.
   await page.goto(base + "/features", { waitUntil: "networkidle" });
-  await page.getByRole("button", { name: "Make it their order", exact: true }).click();
-  await page.getByRole("button", { name: "Expand Make it their order" }).click();
-  await page.getByRole("dialog").waitFor();
-  await page.keyboard.press("Escape");
+  const shots = page.locator("img.shot");
+  const shotCount = await shots.count();
+  assert.ok(shotCount >= 8, "the features page shows the product captures");
+  for (let index = 0; index < shotCount; index += 1) {
+    const shot = shots.nth(index);
+    await shot.scrollIntoViewIfNeeded();
+    const state = await shot.evaluate(async (image) => {
+      await image.decode().catch(() => undefined);
+      return {
+        src: image.currentSrc,
+        loaded: image.complete && image.naturalWidth > 0,
+        alt: image.alt.trim(),
+        sized: Boolean(image.getAttribute("width") && image.getAttribute("height")),
+      };
+    });
+    assert.ok(state.loaded, state.src + " loads");
+    assert.ok(state.alt.length > 20, state.src + " has descriptive alt text");
+    assert.ok(state.sized, state.src + " reserves its space");
+  }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base, { waitUntil: "networkidle" });
   await page.screenshot({ path: ".tmp/screenshots/home-mobile.png", fullPage: true });

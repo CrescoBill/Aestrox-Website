@@ -1,0 +1,72 @@
+{
+  "customiser": {
+    "width": 620,
+    "height": 792,
+    "alt": "Customising Chicken Biryani in Aestrox POS: Half plate and Spicy selected, item total ₹160."
+  },
+  "cart": {
+    "width": 391,
+    "height": 700,
+    "alt": "The current order in Aestrox POS: two Masala Dosa, Ghee Roast and a half plate of spicy Chicken Biryani, with CGST, SGST and the total ready for checkout."
+  },
+  "menu": {
+    "width": 636,
+    "height": 342,
+    "alt": "The Aestrox POS menu grid with categories, prices and item counts on tiles already in the order."
+  },
+  "kitchen": {
+    "width": 1200,
+    "height": 647,
+    "alt": "Kitchen tickets in Aestrox POS, moving from New to Preparing to Ready to serve."
+  },
+  "ticket-1": {
+    "width": 357,
+    "height": 267,
+    "alt": "A kitchen order ticket (KOT 64) from Aestrox POS."
+  },
+  "ticket-2": {
+    "width": 357,
+    "height": 283,
+    "alt": "A kitchen order ticket (KOT 65) from Aestrox POS."
+  },
+  "tables": {
+    "width": 1192,
+    "height": 418,
+    "alt": "The tables view in Aestrox POS: occupied tables with order totals and time seated, free tables in green."
+  },
+  "dashboard": {
+    "width": 774,
+    "height": 386,
+    "alt": "The Aestrox POS dashboard: net sales, orders and average order against yesterday, with sales by hour."
+  },
+  "transactions": {
+    "width": 1176,
+    "height": 520,
+    "alt": "Transactions in Aestrox POS: receipt numbers, time, order, cashier, payment method and amount."
+  },
+  "receipt": {
+    "width": 360,
+    "height": 498,
+    "alt": "A printed 80 mm receipt from Aestrox POS for Demo Bistro, MG Road, with CGST and SGST."
+  },
+  "menu-manage": {
+    "width": 1174,
+    "height": 341,
+    "alt": "Menu management in Aestrox POS: categories, GST rates, prices and availability switches."
+  },
+  "team": {
+    "width": 1176,
+    "height": 281,
+    "alt": "Team members in Aestrox POS with Owner, Kitchen, Waiter and Cashier roles and their locations."
+  },
+  "phone-order": {
+    "width": 412,
+    "height": 915,
+    "alt": "Aestrox POS on an Android phone: the menu with three items in the order."
+  },
+  "phone-cart": {
+    "width": 412,
+    "height": 915,
+    "alt": "The order sheet in Aestrox POS on an Android phone, with totals and checkout."
+  }
+}

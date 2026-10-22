@@ -41,7 +41,7 @@ Current POS workspace: ${posFeatures.join("; ")}.
 Pricing: monthly or annual; amounts require confirmation by our team. Never calculate or promise a quote.
 Free trial: ${site.trialDays} days. The Start your free trial form requests team-assisted setup; it does not automatically provision an account or create a paid subscription.
 Android: an Aestrox Android app exists. ${site.androidStoreUrl ? `Its configured store link is ${site.androidStoreUrl}.` : "Use the Get the app button to request access; do not say it is publicly downloadable on Google Play without a configured store link."}
-Availability: browser POS today. Do not promise full offline sync, native iOS, built-in inventory, automatic UPI verification or third-party delivery/accounting integrations.
+Availability: Aestrox POS works in a modern browser and as an Android app. Kitchen tickets and tables are optional per location. Do not promise full offline sync, native iOS, built-in inventory, automatic UPI verification or third-party delivery/accounting integrations.
 Printer support is model-, connection- and device-dependent. Layouts support 58mm, 80mm and A4; no blanket compatibility claims.
 FAQs:\n${faqs.map((faq) => faq.question + "\n" + faq.answer).join("\n\n")}`;
 }

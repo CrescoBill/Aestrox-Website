@@ -36,11 +36,25 @@ businesses, initially in India, with team locations in Mangalore, Dubai and Dubl
 English marketing register. No invented adoption statistics, testimonials,
 payment integrations, published prices or claims of universal printer support.
 
-The signature is a working, daylight-coloured POS counter next to confident,
-generously spaced typography. Real product behaviour is made tangible through
-an explicitly labelled sample workspace. The rest of the page stays restrained.
-No floating gradients, repeated feature-card walls, artificial splash delay or
-decorative animations. Product content is a registry, not hardcoded into the brand.
+The signature is the real product: slices of the actual Aestrox POS interface (menu,
+order, customiser, kitchen tickets, tables, dashboard, receipt, phone) captured from
+the live app with the fictional Demo Bistro and fixed in place on quiet mint stages,
+next to confident, generously spaced typography. Product imagery is never redrawn by
+hand and never shown full screen; each image is a crisp 1x/2x WebP with reserved size
+and descriptive alt text. The rest of the page stays restrained. No floating gradients,
+repeated feature-card walls, artificial splash delay or decorative animations.
+Product content is a registry, not hardcoded into the brand.
+
+## Redesign, 22 October 2026
+
+Real product photography replaced the hand-built sample POS, receipt, report and phone.
+Headings use Manrope 600 with tight tracking; labels above headings are short, sentence
+case and used sparingly (no uppercase label on every section). Buttons and navigation use
+14.5 to 15px text. Product pages alternate copy with a single stage; the homepage adds one
+three-card grid for tables, receipts and team. The Android section is the one dark product
+section and shows two real phone captures in plain handsets. The Dubai number lives in
+`site.dubaiPhone` and appears once set. The Play Store URL lives in
+`site.androidStoreUrl`; Get the app works before and after it is set.
 
 ## Approved refinements, 22 October 2026
 
@@ -87,14 +101,15 @@ Content sections use space and tonal contrast instead of nested boxes.
 
 ## Shapes
 
-12px controls and 24px major panels. Receipt uses a serrated edge as a specific
+12px controls and 24px major panels. The real receipt capture uses a serrated paper edge as a specific
 product reference. Avoid pills except selected tabs and compact status labels.
 
 ## Components
 
 `SiteShell` owns navigation, footer, enquiry dialog and lazy-loaded chat.
 `ContactForm` owns accessible validation, duplicate prevention and honest
-submission status. `ProductPreview` owns sample interactions. Public billing
+submission status. `Shot` and `PhoneShot` render real captures; `showcase.tsx` owns the stage
+compositions and feature rows. Public billing
 period toggle uses buttons with `aria-pressed`; it is not a checkout.
 
 Radix Dialog handles modal focus, Escape and restoration.

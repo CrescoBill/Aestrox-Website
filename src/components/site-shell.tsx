@@ -95,7 +95,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
                         <span className="product-nav-mark">A</span>
                         <span>
                           <strong>{product.name}</strong>
-                          <small>{product.shortName} for cafés & restaurants</small>
+                          <small>
+                            {product.shortName} {product.audience}
+                          </small>
                         </span>
                       </Link>
                     </Dropdown.Item>
@@ -212,6 +214,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <p>Mangalore, India</p>
               <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
               <p>Dubai, UAE</p>
+              {site.dubaiPhone ? (
+                <a href={`tel:${site.dubaiPhone}`}>{site.dubaiPhoneDisplay}</a>
+              ) : null}
               <p>Dublin, Ireland</p>
               <a href={`tel:${site.irelandPhone}`}>{site.irelandPhoneDisplay}</a>
             </div>

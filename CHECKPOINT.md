@@ -41,6 +41,31 @@ provider configuration change or real enquiry submission was performed.
 The local checks use mocked network responses where appropriate; they do not prove
 email delivery, provider uptime, universal device compatibility or legal compliance.
 
+## Real product redesign (22 October 2026, evening)
+
+- Replaced every hand-drawn imitation of the product (sample POS, receipt, report chart,
+  phone and the full-screen screenshot viewer of old test captures) with real captures of
+  Aestrox POS: menu, current order, customiser, kitchen tickets, tables, dashboard,
+  transactions, receipt print, menu management, team and two Android phone screens.
+- Captures come from the local POS build with the fictional Demo Bistro, staged as a
+  realistic lunch service through the real API, via
+  `marketing/video/scripts/capture-website.ts` in the POS repository. Each ships as 1x
+  and 2x WebP (1.1 MB in total, lazy-loaded) with reserved size and alt text in
+  `src/data/product-images.json`.
+- Redesigned the homepage, POS, features, hardware and company pages around fixed UI
+  slices on quiet stages; refreshed type (Manrope 600, larger nav, buttons and footer
+  text), removed uppercase section labels and the audience strip.
+- Kept Log in, Start your free trial, Get the app (Play Store link slot in
+  `site.androidStoreUrl`), chat, forms and legal pages. Added `site.dubaiPhone`, shown in
+  the footer, contact and company pages once set. No "coming soon" wording.
+- Product registry now carries an audience line and a capture for the company page, so
+  future products appear in navigation, footer and the company page from one entry.
+- Verification: typecheck, lint (no errors; the nine existing warnings), 40 unit tests,
+  production build, and browser checks at 320/390/768/1440 px with no accessibility
+  violations on the audited pages. A new test checks every product image ships at 1x and
+  2x with a size and description; the browser check confirms they load on the features
+  page.
+
 ## Before publication
 
 1. Review the desktop and mobile preview and approve the copy/design.

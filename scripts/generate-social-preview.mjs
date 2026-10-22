@@ -10,7 +10,7 @@ try {
   });
   await page.addStyleTag({
     content:
-      ".utility-bar,.site-header,.chat-launcher{display:none!important}.hero{padding:44px 0!important}.hero-product-stage{min-height:500px!important}.hero .eyebrow{font-size:9px}.hero h1{font-size:52px}.hero-actions{display:none}.hero-copy{padding:0}.hero-description{font-size:18px}.hero-grid{gap:32px}",
+      ".utility-bar,.desktop-nav,.header-actions,.chat-launcher,.hero-actions,.hero-note{display:none!important}.site-header{position:static;border:0}.hero{padding:20px 0 40px!important}.hero-grid{gap:40px;grid-template-columns:0.95fr 1.05fr}.hero h1{font-size:54px}.lede{font-size:18px}",
   });
   await page.screenshot({ path: "public/social-preview.png" });
   console.log("Created social preview from the actual rendered homepage.");

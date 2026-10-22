@@ -23,30 +23,34 @@ The static preview runs at http://127.0.0.1:4311. It deliberately does not simul
 
 ## Where to edit
 
-| File / folder                        | Purpose                                                                                               |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `src/data/site.ts`                   | Company contacts, social links, product registry, Android store link, FAQs and verified product facts |
-| `src/data/legal.ts`                  | Website privacy, terms and cookie notices                                                             |
-| `src/components/site-shell.tsx`      | Shared header, product navigation, footer, enquiry dialog and lazy-loaded assistant                   |
-| `src/components/home-page.tsx`       | Company-led homepage                                                                                  |
-| `src/components/product-pages.tsx`   | POS, pricing, company, contact and supporting pages                                                   |
-| `src/components/product-preview.tsx` | Interactive, client-only sample POS and illustrative reports                                          |
-| `src/components/product-gallery.tsx` | Real POS screenshot gallery                                                                           |
-| `src/components/contact-form.tsx`    | Shared enquiry form, validation, submitting/error/success states                                      |
-| `src/components/chat-widget.tsx`     | Accessible AI chat dialog; conversation stays in page memory                                          |
-| `netlify/functions/chat.ts`          | Server-only Groq integration, verified-fact prompt and request validation                             |
-| `src/routes/`                        | TanStack route definitions and page metadata                                                          |
-| `src/styles.css`                     | Runtime design tokens and responsive styles                                                           |
-| `DESIGN.md`                          | Design decisions and constraints                                                                      |
-| `netlify.toml`                       | Netlify build, headers, functions and 404 configuration                                               |
-| `public/__forms.html`                | Static form definition Netlify detects during deployment                                              |
-| `scripts/`                           | Static output finalizer, local preview, screenshots and browser checks                                |
+| File / folder                      | Purpose                                                                                               |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `src/data/site.ts`                 | Company contacts, social links, product registry, Android store link, FAQs and verified product facts |
+| `src/data/legal.ts`                | Website privacy, terms and cookie notices                                                             |
+| `src/components/site-shell.tsx`    | Shared header, product navigation, footer, enquiry dialog and lazy-loaded assistant                   |
+| `src/components/home-page.tsx`     | Company-led homepage                                                                                  |
+| `src/components/product-pages.tsx` | POS, pricing, company, contact and supporting pages                                                   |
+| `src/components/product-shot.tsx`  | Real product captures (`Shot`, `PhoneShot`) with 1x/2x WebP, reserved size and alt text               |
+| `src/components/showcase.tsx`      | Stage compositions of real captures, feature rows and check lists                                     |
+| `src/data/product-images.json`     | Generated size and alt text for every image in `public/product`                                       |
+| `src/components/contact-form.tsx`  | Shared enquiry form, validation, submitting/error/success states                                      |
+| `src/components/chat-widget.tsx`   | Accessible AI chat dialog; conversation stays in page memory                                          |
+| `netlify/functions/chat.ts`        | Server-only Groq integration, verified-fact prompt and request validation                             |
+| `src/routes/`                      | TanStack route definitions and page metadata                                                          |
+| `src/styles.css`                   | Runtime design tokens and responsive styles                                                           |
+| `DESIGN.md`                        | Design decisions and constraints                                                                      |
+| `netlify.toml`                     | Netlify build, headers, functions and 404 configuration                                               |
+| `public/__forms.html`              | Static form definition Netlify detects during deployment                                              |
+| `scripts/`                         | Static output finalizer, local preview, screenshots and browser checks                                |
 
 To add a product, create its page/route and add it to `products` in `src/data/site.ts`. The company navigation then picks it up. Update verified facts and FAQs as functionality changes; the assistant uses these same sources.
 
 ## Android
 
 The site presents Aestrox for Android without “coming soon.” Set `site.androidStoreUrl` in `src/data/site.ts` to the official published Play Store URL. Until configured, **Get the app** opens an app-access enquiry, not a broken store link. No unpublished listing URL or release date is invented.
+
+Set `site.dubaiPhone` (dialling format, for example `+9715xxxxxxxx`) and
+`site.dubaiPhoneDisplay` to show the Dubai number in the footer, contact and company pages.
 
 ## Netlify setup
 
@@ -96,17 +100,34 @@ npm run preview
 npm run test:browser
 ```
 
-Browser checks cover responsive routes, keyboard/dialog behavior, pricing selection, form validation, local-delivery safety, mocked assistant success/failure/retry, actual screenshot dialogs, 404s, CSP/hydration errors and automated accessibility. They write local evidence to ignored `.tmp/`. They do not send real enquiries or spend Groq credits.
+Browser checks cover responsive routes, keyboard/dialog behavior, pricing selection, form validation, local-delivery safety, mocked assistant success/failure/retry, product images (loaded, sized, described), 404s, CSP/hydration errors and automated accessibility. They write local evidence to ignored `.tmp/`. They do not send real enquiries or spend Groq credits.
 
 A marketing page may still benefit from human screen-reader and real-device testing. Do not equate automated checks with complete accessibility certification.
+
+## Product images
+
+Every product image on the site is a real capture of Aestrox POS, not a drawing. They are
+taken from the local POS build with the fictional Demo Bistro (no customer data) by
+`marketing/video/scripts/capture-website.ts` in the Aestrox POS repository:
+
+```sh
+# In the POS repository, with the local stack running (see marketing/video/README.md)
+pnpm local:reset && pnpm local:seed && pnpm local:demo
+cd marketing/video && pnpm stage
+node scripts/capture-website.ts "C:/Users/Abdul Sameeh K/Desktop/Aestrox website"
+```
+
+It writes `public/product/<name>.webp` (2x), `<name>-1x.webp` (1x) and
+`src/data/product-images.json`. Re-run it after visible product changes so the website
+matches the app, soon after staging so table timers and ticket ages look live.
 
 ## Assets
 
 - Approved Aestrox logo retained from this repository.
-- Actual sample-data POS screenshots copied unchanged from the Aestrox product documentation; no real customer data.
-- Interactive sample workspace and reports are illustrative, not live account data.
+- Product images are real captures as described above, with no real customer data.
 - Manrope and DM Sans are self-hosted via Fontsource packages.
-- `public/social-preview.png` is generated from the website itself, not a stock or AI-generated image.
+- `public/social-preview.png` is generated from the rendered homepage
+  (`node scripts/generate-social-preview.mjs` with the dev server on port 4310).
 
 See `CHECKPOINT.md` for the current handoff and remaining launch work.
 

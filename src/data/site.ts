@@ -9,6 +9,9 @@ export const site = {
   phoneDisplay: "+91 89218 68300",
   irelandPhone: "+353894243991",
   irelandPhoneDisplay: "+353 89 424 3991",
+  // Add the Dubai number here; the footer and contact page show it once set.
+  dubaiPhone: "",
+  dubaiPhoneDisplay: "",
   trialDays: 14,
   locations: ["Mangalore, India", "Dubai, UAE", "Dublin, Ireland"],
   socials: [
@@ -20,24 +23,32 @@ export const site = {
   androidStoreUrl: "",
 } as const;
 
-/** Add future products here; the company shell doesn't depend on a single POS. */
+/** Add future products here; navigation, footer and the company page list them. */
 export const products = [
   {
     id: "pos",
     name: "Aestrox POS",
     shortName: "Point of sale",
     href: "/products/pos" as const,
-    description: "Point of sale for cafés and restaurants.",
+    audience: "for cafés and restaurants",
+    /** A real capture from public/product, shown on the company page. */
+    image: "menu" as const,
+    description:
+      "Orders, kitchen tickets, tables, receipts and daily reports for cafés and restaurants, on the web and Android.",
   },
 ];
 
+/** What every Aestrox POS workspace includes today. Keep in step with the product. */
 export const posFeatures = [
-  "Orders and billing",
-  "Menu, variants and modifiers",
-  "Receipt printing",
-  "Transactions and daily reporting",
-  "Team roles and access",
-  "Organisation and location management",
+  "Takeaway, dine-in and table orders",
+  "Sizes, add-ons and kitchen notes",
+  "Kitchen tickets and kitchen screen",
+  "Receipts with CGST and SGST",
+  "Transactions, reprints and reversals",
+  "Sales dashboard",
+  "Menu, prices and availability",
+  "Team roles and multiple locations",
+  "Web and Android",
 ];
 
 export const faqs = [

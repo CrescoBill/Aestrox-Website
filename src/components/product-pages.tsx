@@ -1,21 +1,11 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import {
-  Check,
-  ChevronDown,
-  Coffee,
-  Mail,
-  Monitor,
-  Phone,
-  Printer,
-  Smartphone,
-} from "lucide-react";
+import { ChevronDown, Mail, Monitor, Phone, Printer, Smartphone } from "lucide-react";
 import { useDemo } from "./site-shell";
-import { Brand } from "./brand";
-import { ProductPreview, ReceiptPreview, ReportingPreview } from "./product-preview";
 import { ContactForm } from "./contact-form";
-import { ProductGallery } from "./product-gallery";
-import { site, faqs, posFeatures, type BillingPeriod } from "@/data/site";
+import { PhoneShot, Shot } from "./product-shot";
+import { CheckList, FeatureRow, OrderingStage, ShotStage } from "./showcase";
+import { site, faqs, posFeatures, products, type BillingPeriod } from "@/data/site";
 import { companyStructuredData } from "@/data/seo";
 
 export function pageHead(title: string, description: string, path = "/") {
@@ -54,7 +44,7 @@ export function PageIntro({ label, title, copy }: { label: string; title: string
   return (
     <section className="page-intro">
       <div className="container">
-        <p className="eyebrow">{label}</p>
+        <p className="kicker">{label}</p>
         <h1>{title}</h1>
         <p>{copy}</p>
       </div>
@@ -64,11 +54,10 @@ export function PageIntro({ label, title, copy }: { label: string; title: string
 
 export function FAQSection() {
   return (
-    <section className="section faq-section" id="questions">
+    <section className="section faq-section" id="questions" aria-labelledby="faq-title">
       <div className="container faq-layout">
         <div>
-          <p className="eyebrow">FAQs</p>
-          <h2>Frequently asked questions</h2>
+          <h2 id="faq-title">Frequently asked questions</h2>
           <p>Have something else in mind?</p>
           <Link className="text-link" to="/contact">
             We’re here to help
@@ -93,18 +82,13 @@ export function FAQSection() {
 export function BottomCTA() {
   const demo = useDemo();
   return (
-    <section className="bottom-cta">
+    <section className="bottom-cta" aria-labelledby="cta-title">
       <div className="container cta-inner">
         <div>
-          <p className="eyebrow">Get started</p>
-          <h2>
-            Try Aestrox POS
-            <br />
-            free for {site.trialDays} days.
-          </h2>
-        </div>
-        <div>
+          <h2 id="cta-title">Try Aestrox POS free for {site.trialDays} days.</h2>
           <p>Get set up with help from our team.</p>
+        </div>
+        <div className="cta-actions">
           <button className="button button-primary" onClick={() => demo({ kind: "trial" })}>
             Start your free trial
           </button>
@@ -120,18 +104,14 @@ export function BottomCTA() {
 export function AndroidSection() {
   const demo = useDemo();
   return (
-    <section className="android-section" id="android">
+    <section className="android-section" id="android" aria-labelledby="android-title">
       <div className="container android-grid">
-        <div>
-          <p className="eyebrow">Aestrox for Android</p>
-          <h2>
-            Aestrox,
-            <br />
-            where you work.
-          </h2>
+        <div className="android-copy">
+          <p className="kicker">Aestrox for Android</p>
+          <h2 id="android-title">Aestrox, where you work.</h2>
           <p>
-            Keep Aestrox close when you’re away from the counter. Get the app for your team’s
-            Android devices.
+            Take orders at the table or the counter on Android phones and tablets. Print receipts
+            from the device to a compatible receipt printer.
           </p>
           {site.androidStoreUrl ? (
             <a
@@ -140,64 +120,17 @@ export function AndroidSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Smartphone size={19} /> Get the app
+              <Smartphone size={19} aria-hidden="true" /> Get the app
             </a>
           ) : (
             <button className="button button-white" onClick={() => demo({ kind: "android" })}>
-              <Smartphone size={19} /> Get the app
+              <Smartphone size={19} aria-hidden="true" /> Get the app
             </button>
           )}
         </div>
-        <div className="phone-stage">
-          <div className="phone-frame">
-            <div className="phone-camera" />
-            <div className="phone-app">
-              <Brand />
-              <div className="phone-heading">
-                <small>THE DAILY CAFÉ</small>
-                <strong>
-                  Your business,
-                  <br />
-                  in your hands.
-                </strong>
-              </div>
-              <div className="phone-order-title">
-                Current order <span>2 items</span>
-              </div>
-              <div className="phone-item">
-                <span>
-                  <Coffee />
-                </span>
-                <div>
-                  <strong>Cappuccino</strong>
-                  <small>Regular · 1 item</small>
-                </div>
-                <b>₹180</b>
-              </div>
-              <div className="phone-item">
-                <span>
-                  <Coffee />
-                </span>
-                <div>
-                  <strong>Iced latte</strong>
-                  <small>Regular · 1 item</small>
-                </div>
-                <b>₹220</b>
-              </div>
-              <div className="phone-total">
-                <span>Total</span>
-                <strong>₹400</strong>
-              </div>
-              <div className="phone-checkout">Checkout</div>
-              <small className="phone-sample">Illustrative workspace</small>
-            </div>
-            <div className="phone-home" />
-          </div>
-          <div className="phone-stage-label">
-            At your counter.
-            <br />
-            In your pocket.
-          </div>
+        <div className="android-phones">
+          <PhoneShot name="phone-cart" className="handset-back" />
+          <PhoneShot name="phone-order" className="handset-front" />
         </div>
       </div>
     </section>
@@ -208,15 +141,11 @@ export function PricingSection() {
   const demo = useDemo();
   const [period, setPeriod] = useState<BillingPeriod>("Annual");
   return (
-    <section className="pricing-section">
+    <section className="section pricing-section" aria-labelledby="pricing-title">
       <div className="container pricing-layout">
         <div className="pricing-intro">
-          <p className="eyebrow">Aestrox POS</p>
-          <h2>
-            A plan that fits
-            <br />
-            your business.
-          </h2>
+          <p className="kicker">Aestrox POS</p>
+          <h2 id="pricing-title">A plan that fits your business.</h2>
           <p>
             Tell us about your team and locations. We’ll walk you through the right setup, with
             clear terms before you start.
@@ -236,11 +165,11 @@ export function PricingSection() {
         </div>
         <div className="pricing-card">
           <div className="plan-top">
-            <span>STANDARD</span>
+            <span>Standard</span>
             <span>{period} billing</span>
           </div>
           <h3>Aestrox POS</h3>
-          <p className="plan-description">Your counter, your team and your daily operations.</p>
+          <p className="plan-description">Your counter, your kitchen and your team.</p>
           <div className="price-label">Let’s talk pricing.</div>
           <p>Contact us for a quote for your business.</p>
           <button
@@ -250,15 +179,8 @@ export function PricingSection() {
             Contact for pricing
           </button>
           <div className="plan-features">
-            <h4>In your workspace</h4>
-            <ul>
-              {posFeatures.map((feature) => (
-                <li key={feature}>
-                  <Check size={16} />
-                  {feature}
-                </li>
-              ))}
-            </ul>
+            <h4>Every workspace includes</h4>
+            <CheckList items={posFeatures} />
           </div>
           <p className="pricing-footnote">Start with a {site.trialDays}-day free trial.</p>
         </div>
@@ -267,82 +189,63 @@ export function PricingSection() {
   );
 }
 
-export function BillingWorkspace() {
-  return <ProductPreview />;
-}
-
 export function BillingPage() {
   const demo = useDemo();
   return (
     <main id="main">
       <section className="product-hero">
         <div className="container">
-          <p className="eyebrow">Aestrox POS</p>
-          <h1>
-            Point of sale for
-            <br />
-            cafés and restaurants.
-          </h1>
-          <p>Manage your counter, team and daily business in one place.</p>
-          <div className="hero-actions">
-            <button className="button button-primary" onClick={() => demo({ kind: "trial" })}>
-              Start your free trial
-            </button>
-            <Link className="text-link" to="/features">
-              Explore the workspace
-            </Link>
+          <div className="product-hero-copy">
+            <p className="kicker">Aestrox POS</p>
+            <h1>Point of sale for cafés and restaurants.</h1>
+            <p className="lede">
+              Manage your counter, your kitchen and your team in one place. Use it in the browser or
+              on Android.
+            </p>
+            <div className="hero-actions">
+              <button className="button button-primary" onClick={() => demo({ kind: "trial" })}>
+                Start your free trial
+              </button>
+              <Link className="button button-quiet" to="/features">
+                See all features
+              </Link>
+            </div>
           </div>
-          <div className="product-hero-preview">
-            <ProductPreview />
-          </div>
+          <OrderingStage priority />
         </div>
       </section>
-      <section className="section">
-        <div className="container intro-grid">
-          <p className="eyebrow">Your daily operations</p>
-          <div>
-            <h2>
-              Run your counter
-              <br />
-              from one workspace.
-            </h2>
+
+      <section className="section" aria-labelledby="essentials-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="essentials-title">Run your counter from one workspace.</h2>
             <p>
-              Aestrox POS brings the essentials of running your counter into one workspace. Set up
-              your menu, take an order, record the payment and keep a clear record of the day.
+              Set up your menu, take an order, send it to the kitchen, record the payment and keep a
+              clear record of the day.
             </p>
           </div>
-        </div>
-      </section>
-      <section className="section canvas-section">
-        <div className="container product-details">
-          <div>
-            <p className="eyebrow">A workspace that makes sense</p>
-            <h2>
-              From menu
-              <br />
-              to close of day.
-            </h2>
-            <Link className="text-link" to="/features">
-              A closer look
-            </Link>
-          </div>
-          <div className="capability-list">
+          <div className="capabilities">
             {[
               [
                 "Orders & billing",
-                "Add items, make the changes your guest asks for, and complete the bill when you’re ready.",
+                "Add items, make the changes your guest asks for and complete the bill when you’re ready.",
               ],
               [
+                "Kitchen tickets",
+                "Orders reach the kitchen screen as tickets that move from new to ready.",
+              ],
+              ["Tables", "See every table at a glance and add to a bill as guests order more."],
+              [
                 "Your menu",
-                "Organise categories, prices, variants and modifiers in a way that fits what you serve.",
+                "Organise categories, prices, sizes and add-ons in a way that fits what you serve.",
               ],
               [
                 "A record of the day",
-                "Find an order, check a transaction or review your daily overview without starting from scratch.",
+                "Find any sale, reprint a receipt or review the day’s sales on your dashboard.",
               ],
               [
                 "Your team & locations",
-                "Give people access to the work they do and move between the businesses you manage.",
+                "Give people the access their role needs and move between the businesses you manage.",
               ],
             ].map(([title, copy]) => (
               <article key={title}>
@@ -353,6 +256,48 @@ export function BillingPage() {
           </div>
         </div>
       </section>
+
+      <section className="section tinted-section" aria-labelledby="pos-detail-title">
+        <div className="container">
+          <h2 className="sr-only" id="pos-detail-title">
+            Aestrox POS in detail
+          </h2>
+          <div className="feature-rows">
+            <FeatureRow
+              label="Kitchen"
+              title="The kitchen sees every order."
+              visual={<ShotStage name="kitchen" tone="paper" />}
+            >
+              <p>
+                Send an order to the kitchen and your team sees it straight away, with sizes,
+                add-ons and notes. Cancellations are marked clearly.
+              </p>
+            </FeatureRow>
+            <FeatureRow
+              reverse
+              label="Tables"
+              title="Every table, one glance."
+              visual={<ShotStage name="tables" tone="paper" />}
+            >
+              <p>
+                Free tables, seated guests, how long they have been there and the bill so far. Tap a
+                table to add to its order.
+              </p>
+            </FeatureRow>
+            <FeatureRow
+              label="Records"
+              title="A receipt for every sale."
+              visual={<ShotStage name="transactions" secondary="receipt" tone="paper" />}
+            >
+              <p>
+                Record cash, card or UPI payments taken through your existing setup. Every sale gets
+                a numbered receipt you can find, reprint or reverse later.
+              </p>
+            </FeatureRow>
+          </div>
+        </div>
+      </section>
+
       <AndroidSection />
       <PricingSection />
       <FAQSection />
@@ -361,62 +306,118 @@ export function BillingPage() {
   );
 }
 
+const featureAreas = [
+  {
+    label: "Ordering",
+    title: "Build an order at the pace of service.",
+    copy: "Tap items to add them, change quantities and keep the bill moving. Save an order to finish later or go straight to checkout.",
+    points: [
+      "Takeaway, dine-in and table orders",
+      "Token or guest name on each order",
+      "Search by name or initials",
+      "Keyboard shortcuts at the counter",
+    ],
+    visual: <ShotStage name="menu" secondary="cart" />,
+  },
+  {
+    label: "Sizes & add-ons",
+    title: "Make every order theirs.",
+    copy: "Sizes, spice levels and extras are one tap each, with prices and tax worked out for you.",
+    points: [
+      "Sizes with their own prices",
+      "Required and optional choices",
+      "Add-ons and kitchen notes",
+    ],
+    visual: <ShotStage name="customiser" />,
+  },
+  {
+    label: "Kitchen",
+    title: "Orders reach the kitchen as tickets.",
+    copy: "Your kitchen screen shows new, preparing and ready tickets. Print a ticket whenever the kitchen needs paper.",
+    points: [
+      "Tickets when an order is sent",
+      "New, preparing, ready to serve",
+      "Cancellations marked in red",
+    ],
+    visual: <ShotStage name="kitchen" tone="paper" />,
+  },
+  {
+    label: "Tables",
+    title: "Run the floor from the counter.",
+    copy: "Group tables by area, see who is seated and for how long, and open the bill for any table.",
+    points: [
+      "Indoor and outdoor areas",
+      "Free and occupied at a glance",
+      "Bill so far on each table",
+    ],
+    visual: <ShotStage name="tables" tone="paper" />,
+  },
+  {
+    label: "Payments & receipts",
+    title: "Keep the details within reach.",
+    copy: "Record payments taken through your existing card machine or UPI. Aestrox is not a payment gateway; your team confirms each payment before recording it.",
+    points: [
+      "Cash, card and UPI",
+      "Numbered receipts with CGST and SGST",
+      "Find, reprint or reverse a sale",
+      "58 mm, 80 mm and A4 layouts",
+    ],
+    visual: <ShotStage name="transactions" secondary="receipt" tone="paper" />,
+  },
+  {
+    label: "Reports",
+    title: "Keep an eye on the day.",
+    copy: "Your dashboard brings together sales, orders and your average bill, compared with yesterday.",
+    points: ["Sales by hour", "Busiest hour of the day", "Payment and order type mix"],
+    visual: <ShotStage name="dashboard" />,
+  },
+  {
+    label: "Menu",
+    title: "Keep what you serve up to date.",
+    copy: "Manage categories, prices and GST rates. Switch an item off when it runs out and back on when it returns.",
+    points: [
+      "Categories, sizes and add-ons",
+      "GST rate per item",
+      "Drag to reorder",
+      "Photos or icons",
+    ],
+    visual: <ShotStage name="menu-manage" tone="paper" />,
+  },
+  {
+    label: "Team",
+    title: "The right access for the right people.",
+    copy: "Invite your team, choose their role and connect them to the locations they work in.",
+    points: [
+      "Owner, cashier, waiter and kitchen roles",
+      "Access by location",
+      "Pause access without losing history",
+    ],
+    visual: <ShotStage name="team" tone="paper" />,
+  },
+] as const;
+
 export function FeaturesPage() {
   return (
     <main id="main">
       <PageIntro
         label="Inside Aestrox POS"
         title="Familiar work. One workspace."
-        copy="A closer look at the tools your team can use throughout the day."
+        copy="A closer look at the tools your team uses throughout the day, from the first order to the close of business."
       />
-      <ProductGallery />
-      <section className="section canvas-section">
-        <div className="container feature-editorial">
-          {[
-            [
-              "The counter",
-              "Build an order at the pace of service.",
-              "Choose items, adjust quantities and customise variants or modifiers. Save an open order or move on to checkout.",
-            ],
-            [
-              "The menu",
-              "Keep what you serve up to date.",
-              "Manage categories, item photos or icons, prices and tax rates. Enable or disable items when your menu changes.",
-            ],
-            [
-              "The record",
-              "Keep the details within reach.",
-              "Record externally confirmed payments, review transactions and print a receipt. Aestrox is not a payment gateway.",
-            ],
-            [
-              "The team",
-              "The right access for the right people.",
-              "Invite your team, set their role and connect them to the locations they work in.",
-            ],
-          ].map(([label, title, copy]) => (
-            <article key={label}>
-              <p className="eyebrow">{label}</p>
-              <h2>{title}</h2>
-              <p>{copy}</p>
-            </article>
+      <section className="section features-list" aria-label="Aestrox POS features">
+        <div className="container feature-rows">
+          {featureAreas.map((area, index) => (
+            <FeatureRow
+              key={area.label}
+              reverse={index % 2 === 1}
+              label={area.label}
+              title={area.title}
+              visual={area.visual}
+            >
+              <p>{area.copy}</p>
+              <CheckList items={area.points} />
+            </FeatureRow>
           ))}
-        </div>
-      </section>
-      <section className="section">
-        <div className="container split-grid">
-          <ReportingPreview />
-          <div className="section-copy">
-            <p className="eyebrow">The bigger picture</p>
-            <h2>
-              Keep an eye
-              <br />
-              on the day.
-            </h2>
-            <p>
-              Your dashboard brings together completed orders and recorded sales, with transactions
-              a step away when you want the detail.
-            </p>
-          </div>
         </div>
       </section>
       <BottomCTA />
@@ -436,64 +437,60 @@ export function HardwarePage() {
       <section className="section">
         <div className="container hardware-layout">
           <div className="receipt-stage">
-            <ReceiptPreview />
+            <Shot name="receipt" className="receipt-shot" sizes="(min-width: 760px) 320px, 80vw" />
           </div>
-          <div>
-            <p className="eyebrow">At your counter</p>
-            <h2>
-              The bill is part
-              <br />
-              of the experience.
-            </h2>
+          <div className="hardware-copy">
+            <h2>The bill is part of the experience.</h2>
             <p>
-              A readable receipt, with your business details and a clear breakdown. Choose a layout
-              that suits your setup.
+              A readable receipt with your business details and a clear tax breakdown. Choose the
+              layout that suits your printer.
             </p>
-            <ul className="plain-list">
-              <li>
-                <Check size={18} /> 58mm and 80mm receipt layouts
-              </li>
-              <li>
-                <Check size={18} /> A4 for a standard office printer
-              </li>
-              <li>
-                <Check size={18} /> Browser printing through your device’s print dialog
-              </li>
-            </ul>
+            <CheckList
+              items={[
+                "58 mm and 80 mm receipt layouts",
+                "A4 for a standard office printer",
+                "Browser printing through your device’s print dialog",
+                "Direct printing from the Android app to a compatible printer",
+              ]}
+            />
             <button className="button button-primary" onClick={() => demo()}>
               Check my printer setup
             </button>
           </div>
         </div>
       </section>
-      <section className="section canvas-section">
-        <div className="container device-grid">
-          {[
-            [
-              Monitor,
-              "Web",
-              "Use Aestrox in a modern browser. Printing depends on the options your computer or mobile device makes available.",
-            ],
-            [
-              Smartphone,
-              "Android",
-              "Talk to us about the Android app and direct thermal-printing setup for your team.",
-            ],
-            [
-              Printer,
-              "Your printer",
-              "USB, Bluetooth and network connections need the right device and adapter. Share your exact model so we can check compatibility.",
-            ],
-          ].map(([Icon, title, copy]) => {
-            const DeviceIcon = Icon as typeof Monitor;
-            return (
-              <article key={String(title)}>
-                <DeviceIcon size={34} strokeWidth={1.3} />
-                <h3>{String(title)}</h3>
-                <p>{String(copy)}</p>
+      <section className="section tinted-section" aria-labelledby="devices-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="devices-title">Works with the devices you have.</h2>
+          </div>
+          <div className="device-grid">
+            {(
+              [
+                [
+                  Monitor,
+                  "Web",
+                  "Use Aestrox in a modern browser on a computer or tablet. Printing uses the options your device makes available.",
+                ],
+                [
+                  Smartphone,
+                  "Android",
+                  "Use the Android app on phones and tablets, with direct printing to a compatible thermal printer.",
+                ],
+                [
+                  Printer,
+                  "Your printer",
+                  "USB, Bluetooth and network printers need the right device and connection. Share your exact model so we can check it.",
+                ],
+              ] as const
+            ).map(([Icon, title, copy]) => (
+              <article key={title}>
+                <Icon size={28} strokeWidth={1.5} aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{copy}</p>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
       <FAQSection />
@@ -508,7 +505,7 @@ export function PricingPage() {
       <PageIntro
         label="Plans & pricing"
         title="Let’s find your fit."
-        copy="Choose monthly or annual billing. Contact us for a quote, or start with a 14-day free trial."
+        copy={`Choose monthly or annual billing. Contact us for a quote, or start with a ${site.trialDays}-day free trial.`}
       />
       <PricingSection />
       <FAQSection />
@@ -527,12 +524,7 @@ export function AboutPage() {
       />
       <section className="section">
         <div className="container about-statement">
-          <p>We build business software.</p>
-          <h2>
-            Practical tools.
-            <br />
-            Built for everyday use.
-          </h2>
+          <h2>Practical tools, built for everyday use.</h2>
           <div>
             <p>
               Aestrox builds software for the people who run businesses. Our focus is on clear
@@ -543,10 +535,49 @@ export function AboutPage() {
               broader direction: connected tools for business operations, teams and the way people
               work.
             </p>
-            <Link className="text-link" to="/products/pos">
-              Meet our first product
-            </Link>
           </div>
+        </div>
+      </section>
+      <section className="section tinted-section" aria-labelledby="products-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="products-title">Our products</h2>
+          </div>
+          <div className="product-list">
+            {products.map((product) => (
+              <Link key={product.id} to={product.href} className="product-card">
+                <div className="product-card-copy">
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <span className="text-link">Explore {product.name}</span>
+                </div>
+                <div className="product-card-shot">
+                  <Shot name={product.image} decorative sizes="(min-width: 760px) 420px, 88vw" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section" aria-labelledby="where-title">
+        <div className="container where-grid">
+          <h2 id="where-title">Where we work</h2>
+          <ul className="place-list">
+            <li>
+              <strong>Mangalore, India</strong>
+              <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+            </li>
+            <li>
+              <strong>Dubai, UAE</strong>
+              {site.dubaiPhone ? (
+                <a href={`tel:${site.dubaiPhone}`}>{site.dubaiPhoneDisplay}</a>
+              ) : null}
+            </li>
+            <li>
+              <strong>Dublin, Ireland</strong>
+              <a href={`tel:${site.irelandPhone}`}>{site.irelandPhoneDisplay}</a>
+            </li>
+          </ul>
         </div>
       </section>
       <BottomCTA />
@@ -560,24 +591,40 @@ export function ContactPage() {
       <section className="section contact-section">
         <div className="container contact-layout">
           <div>
-            <p className="eyebrow">Contact Aestrox</p>
+            <p className="kicker">Contact Aestrox</p>
             <h1>Talk to our team.</h1>
             <p>
               Have a question, want a closer look, or ready to get your team set up? Let’s talk.
             </p>
             <div className="contact-methods">
               <a href={`mailto:${site.email}`}>
-                <Mail />
+                <Mail aria-hidden="true" />
                 <span>
                   <small>General enquiries</small>
                   {site.email}
                 </span>
               </a>
               <a href={`tel:${site.phone}`}>
-                <Phone />
+                <Phone aria-hidden="true" />
                 <span>
                   <small>India sales</small>
                   {site.phoneDisplay}
+                </span>
+              </a>
+              {site.dubaiPhone ? (
+                <a href={`tel:${site.dubaiPhone}`}>
+                  <Phone aria-hidden="true" />
+                  <span>
+                    <small>Dubai</small>
+                    {site.dubaiPhoneDisplay}
+                  </span>
+                </a>
+              ) : null}
+              <a href={`tel:${site.irelandPhone}`}>
+                <Phone aria-hidden="true" />
+                <span>
+                  <small>Ireland</small>
+                  {site.irelandPhoneDisplay}
                 </span>
               </a>
             </div>
@@ -616,7 +663,7 @@ export function IntegrationsPage() {
             requirements. We don’t list an integration as available until it’s ready for use.
           </p>
           <p>
-            Today, Aestrox POS can record payments confirmed through your existing payment setup.
+            Today, Aestrox POS records payments confirmed through your existing payment setup.
             Automatic payment verification, accounting sync and delivery-platform connections aren’t
             included in the current product.
           </p>
