@@ -11,6 +11,7 @@ import {
 import { type ReactNode } from "react";
 
 import { SiteShell } from "@/components/site-shell";
+import { Brand } from "@/components/brand";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -38,7 +39,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
-
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -76,15 +76,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aestrox — Billing software" },
-      { name: "description", content: "Billing software for clearer business workflows." },
-      { property: "og:title", content: "Aestrox — Billing software" },
-      { property: "og:description", content: "Billing software for clearer business workflows." },
+      { title: "Aestrox | Software for your business" },
+      {
+        name: "description",
+        content: "Business software, starting with Aestrox POS for cafés and restaurants.",
+      },
+      { property: "og:site_name", content: "Aestrox" },
+      { name: "theme-color", content: "#0F766E" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&display=swap" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -96,6 +98,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
+  pendingComponent: () => (
+    <div className="route-state" role="status">
+      <Brand />
+      <p>Loading…</p>
+    </div>
+  ),
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -118,7 +126,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteShell><Outlet /></SiteShell>
+      <SiteShell>
+        <Outlet />
+      </SiteShell>
     </QueryClientProvider>
   );
 }

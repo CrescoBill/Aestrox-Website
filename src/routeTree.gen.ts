@@ -10,17 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BillingRouteImport } from './routes/billing'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as HardwareRouteImport } from './routes/hardware'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ThanksRouteImport } from './routes/thanks'
+import { Route as ProductsPosRouteImport } from './routes/products.pos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -36,6 +47,11 @@ const BillingRoute = BillingRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeaturesRoute = FeaturesRouteImport.update({
@@ -58,80 +74,142 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThanksRoute = ThanksRouteImport.update({
+  id: '/thanks',
+  path: '/thanks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsPosRoute = ProductsPosRouteImport.update({
+  id: '/products/pos',
+  path: '/products/pos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/billing': typeof BillingRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/thanks': typeof ThanksRoute
+  '/products/pos': typeof ProductsPosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/billing': typeof BillingRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/thanks': typeof ThanksRoute
+  '/products/pos': typeof ProductsPosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/billing': typeof BillingRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/thanks': typeof ThanksRoute
+  '/products/pos': typeof ProductsPosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/404'
     | '/about'
     | '/billing'
     | '/contact'
+    | '/cookies'
     | '/features'
     | '/hardware'
     | '/integrations'
     | '/pricing'
+    | '/privacy'
+    | '/terms'
+    | '/thanks'
+    | '/products/pos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/404'
     | '/about'
     | '/billing'
     | '/contact'
+    | '/cookies'
     | '/features'
     | '/hardware'
     | '/integrations'
     | '/pricing'
+    | '/privacy'
+    | '/terms'
+    | '/thanks'
+    | '/products/pos'
   id:
     | '__root__'
     | '/'
+    | '/404'
     | '/about'
     | '/billing'
     | '/contact'
+    | '/cookies'
     | '/features'
     | '/hardware'
     | '/integrations'
     | '/pricing'
+    | '/privacy'
+    | '/terms'
+    | '/thanks'
+    | '/products/pos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
   BillingRoute: typeof BillingRoute
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   FeaturesRoute: typeof FeaturesRoute
   HardwareRoute: typeof HardwareRoute
   IntegrationsRoute: typeof IntegrationsRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
+  ThanksRoute: typeof ThanksRoute
+  ProductsPosRoute: typeof ProductsPosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -162,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/features': {
@@ -192,18 +284,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thanks': {
+      id: '/thanks'
+      path: '/thanks'
+      fullPath: '/thanks'
+      preLoaderRoute: typeof ThanksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/pos': {
+      id: '/products/pos'
+      path: '/products/pos'
+      fullPath: '/products/pos'
+      preLoaderRoute: typeof ProductsPosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
   AboutRoute: AboutRoute,
   BillingRoute: BillingRoute,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   FeaturesRoute: FeaturesRoute,
   HardwareRoute: HardwareRoute,
   IntegrationsRoute: IntegrationsRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
+  ThanksRoute: ThanksRoute,
+  ProductsPosRoute: ProductsPosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

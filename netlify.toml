@@ -1,0 +1,40 @@
+[build]
+  command = "npm run build"
+  publish = "dist/client"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Static prerendered routes are served directly; unknown paths get a real 404.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # A hash-based script CSP is generated in dist/client/_headers during build.
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/__forms.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
