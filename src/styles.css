@@ -185,6 +185,10 @@ button:active:not(:disabled),
 img {
   max-width: 100%;
   display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 svg {
   flex-shrink: 0;

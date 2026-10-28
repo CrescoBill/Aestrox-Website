@@ -37,6 +37,8 @@ export function Shot({
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       decoding={priority ? "sync" : "async"}
+      draggable={false}
+      onContextMenu={(event) => event.preventDefault()}
     />
   );
 }

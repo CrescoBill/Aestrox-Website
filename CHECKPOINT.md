@@ -66,6 +66,20 @@ email delivery, provider uptime, universal device compatibility or legal complia
   2x with a size and description; the browser check confirms they load on the features
   page.
 
+## Image interactions (29 October 2026)
+
+- Disabled the context menu and native dragging in both shared image renderers:
+  `Brand` and `Shot` (also used by `PhoneShot`). This covers logos, screenshots
+  and phone captures across all website pages, navigation, footer and chat.
+- Added image-only CSS for touch callouts and selection. Other context menus,
+  page text selection and normal navigation stay available.
+- Public asset URLs remain accessible; these controls only remove the normal
+  right-click/drag/long-press shortcuts where the browser supports them.
+- Focused browser verification passed for 26 rendered images across the homepage
+  and features page: context menus blocked, dragging disabled and image selection
+  disabled. Normal logo navigation and non-image context menus still work.
+  ESLint passed for the two changed image components; no full test suite rerun.
+
 ## Before publication
 
 1. Review the desktop and mobile preview and approve the copy/design.

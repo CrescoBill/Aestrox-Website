@@ -112,6 +112,12 @@ submission status. `Shot` and `PhoneShot` render real captures; `showcase.tsx` o
 compositions and feature rows. Public billing
 period toggle uses buttons with `aria-pressed`; it is not a checkout.
 
+Logo and product image renderers suppress the image context menu and native
+dragging. Image styles also suppress touch callouts where supported. Keep this
+limited to images so text selection, other context menus and logo navigation
+continue to work. This is a presentation preference, not protection against
+downloading public assets.
+
 Radix Dialog handles modal focus, Escape and restoration.
 Chat is a labelled modal with an accessible close button, bounded request,
 cancel/retry and memory-only history. No token-by-token screen-reader chatter.

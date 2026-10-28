@@ -8,6 +8,8 @@ export function Brand({ light = false }: { light?: boolean }) {
       alt="Aestrox"
       width={1566}
       height={518}
+      draggable={false}
+      onContextMenu={(event) => event.preventDefault()}
     />
   );
 }
