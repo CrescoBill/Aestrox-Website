@@ -1,9 +1,10 @@
 import { site } from "./site";
-type Section = { title: string; paragraphs: string[] };
-type LegalDocument = { title: string; intro: string; sections: Section[] };
+type Section = { id?: string; title: string; paragraphs: string[] };
+type LegalDocument = { title: string; intro: string; updated: string; sections: Section[] };
 export const legal: Record<"privacy" | "terms" | "cookies", LegalDocument> = {
   privacy: {
     title: "Privacy policy",
+    updated: "3 November 2026",
     intro:
       "How Aestrox collects, uses and protects information when you use Aestrox POS and our other products, our apps and this website, or contact our team.",
     sections: [
@@ -79,6 +80,16 @@ export const legal: Record<"privacy" | "terms" | "cookies", LegalDocument> = {
         ],
       },
       {
+        id: "delete-account",
+        title: "Deleting your Aestrox POS account",
+        paragraphs: [
+          "In the app: open Aestrox POS on Android or at pos.aestrox.com, sign in, go to Profile and choose Request account deletion. Our team confirms the request with you by email before anything is deleted.",
+          `Without the app: email ${site.email} from the email address you sign in with and ask us to delete your Aestrox POS account.`,
+          "What we delete: your sign-in account, your name and email address, and your access to every business. What we keep: receipts and sales records that a business must keep for tax and accounting, which can include the staff name printed on receipts you issued. They stay with that business for as long as the law requires and are then deleted or anonymised.",
+          "Business owners who want to close a whole business can ask for a copy of its records first, as described in How long we keep information.",
+        ],
+      },
+      {
         title: "Cookies and children",
         paragraphs: [
           "We do not use advertising or tracking cookies. Our Cookies page explains what our products and this website store on your device.",
@@ -95,6 +106,7 @@ export const legal: Record<"privacy" | "terms" | "cookies", LegalDocument> = {
   },
   terms: {
     title: "Terms of use",
+    updated: "23 October 2026",
     intro: "The terms for using Aestrox POS and our other products, our apps and this website.",
     sections: [
       {
@@ -195,6 +207,7 @@ export const legal: Record<"privacy" | "terms" | "cookies", LegalDocument> = {
   },
   cookies: {
     title: "Cookies & local storage",
+    updated: "23 October 2026",
     intro: "What Aestrox products and this website store on your device, and why.",
     sections: [
       {

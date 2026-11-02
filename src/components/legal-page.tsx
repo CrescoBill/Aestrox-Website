@@ -22,14 +22,14 @@ export function LegalPage({ kind }: { kind: keyof typeof legal }) {
           </nav>
           <div className="legal-copy">
             {document.sections.map((section) => (
-              <section key={section.title}>
+              <section id={section.id} key={section.title}>
                 <h2>{section.title}</h2>
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </section>
             ))}
-            <p className="legal-updated">Last updated: 23 October 2026</p>
+            <p className="legal-updated">Last updated: {document.updated}</p>
           </div>
         </div>
       </section>
