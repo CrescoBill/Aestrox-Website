@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Mail, Monitor, Phone, Printer, Smartphone } from "lucide-react";
+import { Check, ChevronDown, Mail, Minus, Monitor, Phone, Printer, Smartphone } from "lucide-react";
 import { useDemo } from "./site-shell";
 import { ContactForm } from "./contact-form";
 import { PhoneShot, Shot } from "./product-shot";
@@ -9,6 +9,8 @@ import {
   site,
   faqs,
   posFeatureAreas,
+  planComparison,
+  plans,
   posFeatures,
   products,
   type BillingPeriod,
@@ -149,13 +151,12 @@ export function PricingSection() {
   const [period, setPeriod] = useState<BillingPeriod>("Annual");
   return (
     <section className="section pricing-section" aria-labelledby="pricing-title">
-      <div className="container pricing-layout">
-        <div className="pricing-intro">
-          <p className="kicker">Aestrox POS</p>
-          <h2 id="pricing-title">A plan that fits your business.</h2>
+      <div className="container">
+        <div className="pricing-head">
+          <h2 id="pricing-title">Two plans. Pick what your floor needs.</h2>
           <p>
-            Tell us about your team and locations. We’ll walk you through the right setup, with
-            clear terms before you start.
+            Lite runs a fast counter. Standard adds tables, the kitchen and your whole team. Both
+            start with a {site.trialDays}-day free trial of everything.
           </p>
           <div className="billing-toggle" role="group" aria-label="Billing period">
             {(["Monthly", "Annual"] as const).map((value) => (
@@ -164,35 +165,80 @@ export function PricingSection() {
               </button>
             ))}
           </div>
-          <p className="billing-caption" aria-live="polite">
-            {period === "Annual"
-              ? "An annual subscription for the year ahead."
-              : "A monthly subscription for your business."}
-          </p>
         </div>
-        <div className="pricing-card">
-          <div className="plan-top">
-            <span>Standard</span>
-            <span>{period} billing</span>
-          </div>
-          <h3>Aestrox POS</h3>
-          <p className="plan-description">Your counter, your kitchen and your team.</p>
-          <div className="price-label">Let’s talk pricing.</div>
-          <p>Contact us for a quote for your business.</p>
-          <button
-            className="button button-primary"
-            onClick={() => demo({ kind: "pricing", billingPeriod: period })}
-          >
-            Contact for pricing
-          </button>
-          <div className="plan-features">
-            <h4>Every workspace includes</h4>
-            <CheckList items={posFeatures} />
-          </div>
-          <p className="pricing-footnote">Start with a {site.trialDays}-day free trial.</p>
+
+        <div className="plan-grid">
+          {plans.map((plan) => (
+            <article
+              className={`plan-card${plan.name === "Standard" ? " plan-card-featured" : ""}`}
+              key={plan.name}
+            >
+              <div className="plan-top">
+                <h3>{plan.name}</h3>
+                {plan.name === "Standard" ? <span className="plan-badge">Everything</span> : null}
+              </div>
+              <p className="plan-description">{plan.summary}</p>
+              <p className="plan-best-for">{plan.bestFor}</p>
+              <div className="price-label">
+                {plan.name === "Lite" ? "Lower cost, counter first" : "Full restaurant setup"}
+              </div>
+              <p className="plan-billing">{period} billing · quoted for your business</p>
+              <button
+                className={`button ${plan.name === "Standard" ? "button-primary" : "button-quiet"}`}
+                onClick={() => demo({ kind: "pricing", billingPeriod: period, plan: plan.name })}
+              >
+                Get a {plan.name} quote
+              </button>
+            </article>
+          ))}
         </div>
+
+        <div className="plan-compare" role="region" aria-labelledby="compare-title" tabIndex={0}>
+          <h3 id="compare-title">Compare plans</h3>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Lite</th>
+                <th scope="col">Standard</th>
+              </tr>
+            </thead>
+            {planComparison.map((group) => (
+              <tbody key={group.group}>
+                <tr className="compare-group">
+                  <th colSpan={3} scope="colgroup">
+                    {group.group}
+                  </th>
+                </tr>
+                {group.rows.map((row) => (
+                  <tr key={row.feature}>
+                    <th scope="row">{row.feature}</th>
+                    <PlanCell included={row.lite} plan="Lite" />
+                    <PlanCell included={row.standard} plan="Standard" />
+                  </tr>
+                ))}
+              </tbody>
+            ))}
+          </table>
+        </div>
+        <p className="pricing-footnote">
+          Prices are confirmed in writing before you start. Every new business can try all of
+          Standard free for {site.trialDays} days.
+        </p>
       </div>
     </section>
+  );
+}
+
+function PlanCell({ included, plan }: { included: boolean; plan: string }) {
+  return (
+    <td>
+      {included ? (
+        <Check className="compare-yes" size={18} aria-label={`Included in ${plan}`} />
+      ) : (
+        <Minus className="compare-no" size={18} aria-label={`Not included in ${plan}`} />
+      )}
+    </td>
   );
 }
 

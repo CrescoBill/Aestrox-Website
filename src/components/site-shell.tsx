@@ -252,7 +252,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Dialog.Title>
             <Dialog.Description>
               {dialog?.kind === "pricing"
-                ? `${dialog.billingPeriod ?? "Monthly"} billing for Aestrox POS. Tell us about your setup and we’ll put together a quote.`
+                ? `${
+                    dialog.plan
+                      ? `Aestrox POS ${dialog.plan}, ${(dialog.billingPeriod ?? "Monthly").toLowerCase()} billing.`
+                      : `${dialog.billingPeriod ?? "Monthly"} billing for Aestrox POS.`
+                  } Tell us about your setup and we’ll put together a quote.`
                 : dialog?.kind === "android"
                   ? "Share your details and our team will help you get set up."
                   : dialog?.kind === "trial"

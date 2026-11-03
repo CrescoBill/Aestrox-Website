@@ -153,7 +153,7 @@ export const faqs = [
   {
     question: "How does pricing work?",
     answer:
-      "We offer monthly and annual billing options, with a 14-day free trial. Contact our team for a quote for your business and locations. We will confirm your subscription terms before you start.",
+      "There are two plans. Lite covers billing, receipts, menu and reports at a lower cost. Standard adds tables, kitchen tickets, the kitchen display and waiter and kitchen accounts. Both have monthly or annual billing and a 14-day free trial. Contact our team for a quote; we confirm your subscription terms before you start.",
   },
   {
     question: "How do I start the free trial?",
@@ -183,4 +183,63 @@ export const faqs = [
 
 export type EnquiryKind = "trial" | "demo" | "pricing" | "android" | "contact";
 export type BillingPeriod = "Monthly" | "Annual";
-export type Enquiry = { kind: EnquiryKind; billingPeriod?: BillingPeriod };
+export type PlanName = "Lite" | "Standard";
+export type Enquiry = { kind: EnquiryKind; billingPeriod?: BillingPeriod; plan?: PlanName };
+
+/** Aestrox POS plans. Prices are quoted, never published (see DESIGN.md). */
+export const plans: readonly { name: PlanName; summary: string; bestFor: string }[] = [
+  {
+    name: "Lite",
+    summary: "Fast billing for the counter, at a lower price.",
+    bestFor: "Cafés, bakeries, takeaways and quick-service counters",
+  },
+  {
+    name: "Standard",
+    summary: "Your counter, your tables, your kitchen and your whole team.",
+    bestFor: "Restaurants with dine-in tables and a kitchen",
+  },
+];
+
+/** Feature comparison for the pricing table. Keep it true to the product. */
+export const planComparison: readonly {
+  group: string;
+  rows: readonly { feature: string; lite: boolean; standard: boolean }[];
+}[] = [
+  {
+    group: "Billing",
+    rows: [
+      { feature: "Takeaway, delivery and dine-in by token", lite: true, standard: true },
+      { feature: "Sizes, add-ons and order notes", lite: true, standard: true },
+      { feature: "Save bills and settle them later", lite: true, standard: true },
+      { feature: "Cash, card and UPI recorded at checkout", lite: true, standard: true },
+      { feature: "Discounts and coupon codes", lite: true, standard: true },
+      { feature: "GST receipts, reprints and reversals", lite: true, standard: true },
+    ],
+  },
+  {
+    group: "Tables and kitchen",
+    rows: [
+      { feature: "Table map with floor areas", lite: false, standard: true },
+      { feature: "Kitchen tickets (KOT) with notes", lite: false, standard: true },
+      { feature: "Live kitchen display", lite: false, standard: true },
+    ],
+  },
+  {
+    group: "Menu and reports",
+    rows: [
+      { feature: "Menu with categories, photos and GST rates", lite: true, standard: true },
+      { feature: "Import your menu from Excel, PDF or a photo", lite: true, standard: true },
+      { feature: "Sales dashboard and day-end summary", lite: true, standard: true },
+      { feature: "Excel export for your accountant", lite: true, standard: true },
+    ],
+  },
+  {
+    group: "Team and devices",
+    rows: [
+      { feature: "Owner and cashier accounts", lite: true, standard: true },
+      { feature: "Waiter and kitchen accounts", lite: false, standard: true },
+      { feature: "Bluetooth, USB and network receipt printers", lite: true, standard: true },
+      { feature: "Web and Android apps", lite: true, standard: true },
+    ],
+  },
+];

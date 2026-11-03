@@ -117,6 +117,7 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
       <input type="hidden" name="form-name" value="aestrox-enquiry" />
       <input type="hidden" name="enquiry" value={enquiry.kind} />
       <input type="hidden" name="billing-period" value={enquiry.billingPeriod ?? ""} />
+      <input type="hidden" name="plan" value={enquiry.plan ?? ""} />
       <p className="honeypot" aria-hidden="true">
         <label>
           Leave empty
