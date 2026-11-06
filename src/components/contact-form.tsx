@@ -131,7 +131,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             {...fieldProps("name")}
             autoComplete="name"
             maxLength={100}
-            placeholder="Full name"
             required
           />
           {error("name")}
@@ -143,7 +142,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             type="email"
             autoComplete="email"
             maxLength={180}
-            placeholder="you@yourbusiness.com"
             required
           />
           {error("email")}
@@ -154,7 +152,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             {...fieldProps("business")}
             autoComplete="organization"
             maxLength={140}
-            placeholder="Your café or business"
             required
           />
           {error("business")}
@@ -168,7 +165,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             type="tel"
             autoComplete="tel"
             maxLength={30}
-            placeholder="Include country code"
           />
         </label>
         <label className="field-full" htmlFor={`${id}-message`}>
@@ -179,7 +175,6 @@ export function ContactForm({ enquiry = { kind: "contact" } }: { enquiry?: Enqui
             {...fieldProps("message")}
             rows={3}
             maxLength={2000}
-            placeholder="Your locations, current setup, or what you’re looking for."
           />
         </label>
       </div>
