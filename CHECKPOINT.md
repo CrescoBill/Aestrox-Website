@@ -86,10 +86,17 @@ email delivery, provider uptime, universal device compatibility or legal complia
 2. Add the server-side `GROQ_API_KEY` in Netlify. Review usage/spend settings; the key must not be browser-exposed.
 3. Enable form detection and email notifications. Test an enquiry on a deploy preview and verify both the Forms record and inbox delivery.
 4. Confirm the hello/contact mailboxes or forwarding destinations. The website does not create mailboxes.
-5. Set `site.androidStoreUrl` when the Google Play listing is public. Supply the Dubai number when available.
+5. Supply the Dubai number when available. The owner-supplied Google Play link is configured as of 7 November 2026.
 6. Have the privacy/terms reviewed against the actual company/provider arrangements. These website notices are not the customer SaaS service agreement.
 7. Deploy only after approval, then verify HTTPS, canonical domain, redirects, form delivery and live chat.
 8. Verify Google Search Console ownership, submit the sitemap and inspect the important URLs. Search ranking cannot be guaranteed.
+
+## Android store link (7 November 2026)
+
+- Set the shared `site.androidStoreUrl` to the owner's Aestrox POS listing:
+  `https://play.google.com/store/apps/details?id=com.aestrox.pos`.
+- Existing Get the app actions now render links to Google Play; the assistant
+  reads that same destination. No UI redesign or deployment was performed.
 
 ## Continue from here
 

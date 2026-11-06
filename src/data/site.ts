@@ -19,8 +19,8 @@ export const site = {
     { label: "Facebook", url: "https://www.facebook.com/aestrox.pos/" },
     { label: "LinkedIn", url: "https://www.linkedin.com/company/aestrox/" },
   ],
-  // Set the published Play Store URL here. Until then the action requests access.
-  androidStoreUrl: "",
+  // Shared destination for every Android app CTA and the website assistant.
+  androidStoreUrl: "https://play.google.com/store/apps/details?id=com.aestrox.pos",
 } as const;
 
 /** Add future products here; navigation, footer and the company page list them. */

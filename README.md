@@ -47,7 +47,7 @@ To add a product, create its page/route and add it to `products` in `src/data/si
 
 ## Android
 
-The site presents Aestrox for Android without “coming soon.” Set `site.androidStoreUrl` in `src/data/site.ts` to the official published Play Store URL. Until configured, **Get the app** opens an app-access enquiry, not a broken store link. No unpublished listing URL or release date is invented.
+**Get the app** links to the owner-supplied [Aestrox POS Google Play listing](https://play.google.com/store/apps/details?id=com.aestrox.pos). The shared destination is `site.androidStoreUrl` in `src/data/site.ts`; the website assistant reads the same value. If this value is cleared, the action falls back to an app-access enquiry.
 
 Set `site.dubaiPhone` (dialling format, for example `+9715xxxxxxxx`) and
 `site.dubaiPhoneDisplay` to show the Dubai number in the footer, contact and company pages.
